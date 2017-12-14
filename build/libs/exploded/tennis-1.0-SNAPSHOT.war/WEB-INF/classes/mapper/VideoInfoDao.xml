@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.dao.VideoInfoDao">
+
+
+    <!-- 目的：为dao接口方法提供sql语句配置 -->
+    <select id="queryVideoInfoByCondition" resultType="VideoInfo">
+        <!-- 具体的sql -->
+        SELECT
+        *
+        FROM
+        video_info
+        WHERE
+        source = #{source}
+        AND
+        sub_title = #{subTitle}
+        AND
+        title LIKE CONCAT(CONCAT('%', #{condition}),'%')
+    </select>
+
+
+    <select id="getVideoTypes" resultType="VideoType">
+        <!-- 具体的sql -->
+        SELECT DISTINCT
+        sub_title
+        FROM
+        video_info
+    </select>
+
+
+</mapper>
