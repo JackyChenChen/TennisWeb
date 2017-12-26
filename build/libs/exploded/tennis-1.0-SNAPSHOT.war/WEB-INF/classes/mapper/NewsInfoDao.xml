@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.dao.NewsInfoDao">
+
+
+    <!-- 目的：为dao接口方法提供sql语句配置 -->
+    <select id="getNewsInfoByNewsType" resultType="NewsInfo">
+        <!-- 具体的sql -->
+        SELECT
+        *
+        FROM
+        news_info
+        WHERE
+        newstype = #{newsType}
+    </select>
+
+
+    <select id="getNewsType" resultType="NewsType">
+        <!-- 具体的sql -->
+        SELECT DISTINCT
+        newstype
+        FROM
+        news_info
+    </select>
+
+
+</mapper>

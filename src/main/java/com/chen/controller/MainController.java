@@ -1,8 +1,11 @@
 package com.chen.controller;
 
 import com.chen.dto.Result;
+import com.chen.entity.NewsInfo;
+import com.chen.entity.NewsType;
 import com.chen.entity.VideoInfo;
 import com.chen.entity.VideoType;
+import com.chen.service.NewsInfoService;
 import com.chen.service.VideoInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +17,16 @@ public class MainController {
     @Autowired
     private VideoInfoService videoInfoService;
 
+    @Autowired
+    private NewsInfoService newsInfoService;
+
+    @RequestMapping(value = "/getVideoType",method = RequestMethod.POST)
+    public Result<Object> getVideoType(){
+        List<VideoType> videoTypeList = videoInfoService.getVideoTypes();
+        return getResult(videoTypeList);
+    }
+
+
     @RequestMapping(value = "/getVideo",method = RequestMethod.POST)
     public Result<Object>  getVideoInfo(@RequestParam("source") String source,
                                       @RequestParam("subTitle") String subTitle,
@@ -22,10 +35,17 @@ public class MainController {
         return getResult(videoInfoList);
     }
 
-    @RequestMapping(value = "/getVideoType",method = RequestMethod.POST)
-    public Result<Object> getVideoType(){
-        List<VideoType> videoTypeList = videoInfoService.getVideoTypes();
-        return getResult(videoTypeList);
+
+    @RequestMapping(value = "/getNewsType",method = RequestMethod.POST)
+    public Result<Object> getNewsType(){
+        List<NewsType> newsTypeList = newsInfoService.getNewsType();
+        return getResult(newsTypeList);
+    }
+
+    @RequestMapping(value = "/getNewsInfo",method = RequestMethod.POST)
+    public Result<Object> getNewsInfoByNewsType(@RequestParam("newsType") String newsType){
+        List<NewsInfo> newsInfoList = newsInfoService.getNewsInfoByNewsType(newsType);
+        return getResult(newsInfoList);
     }
 
     /**
@@ -51,6 +71,7 @@ public class MainController {
         result.setData(object);
         return result;
     }
+
 
     private void success(Result result){
         result.setSuccess(true);
