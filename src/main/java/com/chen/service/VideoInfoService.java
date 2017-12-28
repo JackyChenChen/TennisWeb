@@ -8,7 +8,10 @@ import java.util.List;
 public interface VideoInfoService {
 
     List<VideoInfo> queryVideoInfoByCondition(String source,
-                                              String sub_title,String condition);
+                                              String sub_title,
+                                              String condition,
+                                              int pageNum,
+                                              int pageSize);
 
     List<VideoType> getVideoTypes();
 

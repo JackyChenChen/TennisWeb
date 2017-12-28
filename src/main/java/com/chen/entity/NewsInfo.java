@@ -1,11 +1,11 @@
 package com.chen.entity;
 
 /**
- * 新闻实体
+ *
  */
 public class NewsInfo {
 
-    private long id;
+    private long newsId;
 
     private String url;
 
@@ -19,12 +19,12 @@ public class NewsInfo {
 
     private String newsType;
 
-    public long getId() {
-        return id;
+    public long getNewsId() {
+        return newsId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setNewsId(long newsId) {
+        this.newsId = newsId;
     }
 
     public String getUrl() {

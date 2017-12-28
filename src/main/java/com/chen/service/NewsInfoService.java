@@ -9,6 +9,6 @@ public interface NewsInfoService {
 
     List<NewsType> getNewsType();
 
-    List<NewsInfo> getNewsInfoByNewsType(String newsType);
+    List<NewsInfo> getNewsInfoByNewsType(String newsType,int pageSize,int pageNum);
 
 }

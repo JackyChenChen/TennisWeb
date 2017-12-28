@@ -21,7 +21,8 @@ public class NewsInfoServiceImpl implements NewsInfoService {
     }
 
     @Override
-    public List<NewsInfo> getNewsInfoByNewsType(String newsType) {
-        return newsInfoDao.getNewsInfoByNewsType(newsType);
+    public List<NewsInfo> getNewsInfoByNewsType(String newsType,int pageSize,int pageNum) {
+        int startRow = pageSize*(pageNum - 1);
+        return newsInfoDao.getNewsInfoByNewsType(newsType,startRow,pageSize);
     }
 }

@@ -13,7 +13,9 @@ public interface NewsInfoDao {
      * @param newsType
      * @return
      */
-    List<NewsInfo> getNewsInfoByNewsType(@Param("newsType") String newsType);
+    List<NewsInfo> getNewsInfoByNewsType(@Param("newsType") String newsType,
+                                         @Param("startRow")int startRow,
+                                         @Param("pageSize")int pageSize);
 
     /**
      * 获取新闻类型
