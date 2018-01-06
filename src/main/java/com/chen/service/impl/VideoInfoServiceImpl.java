@@ -17,8 +17,9 @@ public class VideoInfoServiceImpl implements VideoInfoService {
 
 
     @Override
-    public List<VideoInfo> queryVideoInfoByCondition(String source, String sub_title,String condition) {
-        return videoInfoDao.queryVideoInfoByCondition(source,sub_title,condition);
+    public List<VideoInfo> queryVideoInfoByCondition(String source, String sub_title,String condition,int pageNum,int pageSize) {
+        int startRow = pageSize*(pageNum - 1);
+        return videoInfoDao.queryVideoInfoByCondition(source,sub_title,condition,startRow,pageSize);
     }
 
     @Override

@@ -6,8 +6,9 @@ public class Result<T> {
 
     private String error; //错误信息
 
-    private T data; //数据
+    private boolean isLastPage = true; //是否是最后一页
 
+    private T data; //数据
 
     public Result(){}
 
@@ -53,4 +54,11 @@ public class Result<T> {
         this.error = error;
     }
 
+    public boolean isLastPage() {
+        return isLastPage;
+    }
+
+    public void setLastPage(boolean lastPage) {
+        isLastPage = lastPage;
+    }
 }

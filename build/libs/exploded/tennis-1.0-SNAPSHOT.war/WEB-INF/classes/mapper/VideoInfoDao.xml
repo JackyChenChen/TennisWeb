@@ -18,6 +18,8 @@
         sub_title = #{subTitle}
         AND
         title LIKE CONCAT(CONCAT('%', #{condition}),'%')
+        limit
+        #{startRow},#{pageSize}
     </select>
 
 
