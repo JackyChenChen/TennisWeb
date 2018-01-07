@@ -1,10 +1,8 @@
 package com.chen.controller;
 
 import com.chen.dto.Result;
-import com.chen.entity.NewsInfo;
-import com.chen.entity.NewsType;
-import com.chen.entity.VideoInfo;
-import com.chen.entity.VideoType;
+import com.chen.entity.*;
+import com.chen.service.LiveInfoService;
 import com.chen.service.NewsInfoService;
 import com.chen.service.VideoInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +17,9 @@ public class MainController {
 
     @Autowired
     private NewsInfoService newsInfoService;
+
+    @Autowired
+    private LiveInfoService liveInfoService;
 
     @RequestMapping(value = "/getVideoType",method = RequestMethod.POST)
     public Result<Object> getVideoType(){
@@ -50,6 +51,12 @@ public class MainController {
                                                 @RequestParam("pageNum") int pageNum){
         List<NewsInfo> newsInfoList = newsInfoService.getNewsInfoByNewsType(newsType,pageSize,pageNum);
         return getResult(newsInfoList,pageSize);
+    }
+
+    @RequestMapping(value = "/getLiveInfo",method = RequestMethod.POST)
+    public Result<Object> getLiveInfo(){
+        List<LiveInfo> liveInfoList = liveInfoService.getLiveInfo();
+        return getResult(liveInfoList,0);
     }
 
     /**
