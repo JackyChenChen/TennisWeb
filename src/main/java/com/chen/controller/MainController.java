@@ -2,6 +2,7 @@ package com.chen.controller;
 
 import com.chen.dto.Result;
 import com.chen.entity.*;
+import com.chen.service.ForumInfoService;
 import com.chen.service.LiveInfoService;
 import com.chen.service.NewsInfoService;
 import com.chen.service.VideoInfoService;
@@ -20,6 +21,9 @@ public class MainController {
 
     @Autowired
     private LiveInfoService liveInfoService;
+
+    @Autowired
+    private ForumInfoService forumInfoService;
 
     @RequestMapping(value = "/getVideoType",method = RequestMethod.POST)
     public Result<Object> getVideoType(){
@@ -58,6 +62,16 @@ public class MainController {
         List<LiveInfo> liveInfoList = liveInfoService.getLiveInfo();
         return getResult(liveInfoList,0);
     }
+
+    @RequestMapping(value = "/getForumInfo",method = RequestMethod.POST)
+    public Result<Object> getForumInfo(
+            @RequestParam("keyword") String keyword,
+            @RequestParam("pageSize") int pageSize,
+            @RequestParam("pageNum") int pageNum){
+        List<ForumInfo> forumInfoList = forumInfoService.getForumInfo(keyword,pageSize,pageNum);
+        return getResult(forumInfoList,pageSize);
+    }
+
 
     /**
      * 封装数据结果
